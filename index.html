@@ -1,35 +1,68 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Ver columnas</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.6.2/sql-wasm.js"></script>
+    <meta charset="UTF-8">
+    <title>Video con pregunta</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+        #resultado {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        iframe {
+            border: none;
+            margin-bottom: 20px;
+        }
+        input {
+            padding: 8px;
+            font-size: 16px;
+        }
+        button {
+            padding: 8px 12px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-  <h1>Columnas de la tabla samples</h1>
-  <pre id="resultado"></pre>
 
-  <script>
-    initSqlJs({ locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.6.2/${file}` })
-      .then(async (SQL) => {
-        // Cargar la base .db como ArrayBuffer
-        const response = await fetch("samples.db");
-        const buffer = await response.arrayBuffer();
-        const db = new SQL.Database(new Uint8Array(buffer));
+    <h1>Mira el video y responde</h1>
 
-        // Obtener info de las columnas
-        const res = db.exec("PRAGMA table_info(samples);");
+    <!-- Video de YouTube -->
+    <iframe id="video" width="560" height="315"
+            src="https://www.youtube.com/embed/watch?v=-fgso7M9azY"
+            allowfullscreen></iframe>
 
-        // res[0].values contiene las filas
-        // Columnas devueltas: cid, name, type, notnull, dflt_value, pk
-        let salida = "cid | name | type | notnull | dflt_value | pk\n";
-        salida += "--------------------------------------------------\n";
-        res[0].values.forEach(col => {
-          salida += col.join(" | ") + "\n";
-        });
+    <p>Pregunta: ¿Cuál es la palabra clave?</p>
 
-        document.getElementById("resultado").textContent = salida;
-      });
-  </script>
-</body> 
+    <!-- Entrada de texto -->
+    <input type="text" id="respuesta" placeholder="Escribe tu respuesta">
+    <button onclick="verificar()">Enviar</button>
+
+    <div id="resultado"></div>
+
+    <script>
+        function verificar() {
+            const correcta = "rickroll"; // respuesta correcta
+            const entrada = document.getElementById("respuesta").value.trim().toLowerCase();
+            const resultado = document.getElementById("resultado");
+
+            if (entrada === correcta) {
+                resultado.textContent = "✅ ¡Correcto!";
+                resultado.style.color = "green";
+                document.body.style.backgroundColor = "#c8f7c5"; // cambia fondo
+                // Aquí podrías agregar cualquier otra acción
+            } else {
+                resultado.textContent = "❌ Respuesta incorrecta, intenta de nuevo.";
+                resultado.style.color = "red";
+            }
+        }
+    </script>
+
+</body>
 </html>
