@@ -117,7 +117,7 @@ with sync_playwright() as p:
     context = browser.new_context(user_agent="Mozilla/5.0 ...")
 
     for artist, title in rock_top_100_slugs:
-        url = f"https://www.whosampled.com/{artist}/{title}/sampled/"
+        url = f"https://www.whosampled.com/{artist}/{title}/"
         page = context.new_page()
         try:
             page.goto(url, timeout=60000, wait_until="domcontentloaded")

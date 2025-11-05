@@ -18,47 +18,45 @@
             border: none;
             margin-bottom: 20px;
         }
-        input {
-            padding: 8px;
-            font-size: 16px;
-        }
-        button {
-            padding: 8px 12px;
-            font-size: 16px;
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
 
     <h1>Mira el video y responde</h1>
 
-    <!-- Video de YouTube -->
-    <iframe id="video" width="560" height="315"
-            src="https://www.youtube.com/embed/watch?v=-fgso7M9azY"
-            allowfullscreen></iframe>
+    <!-- Video dinámico desde Question.urlYT -->
+    <iframe id="video" width="560" height="315" allowfullscreen></iframe>
 
-    <p>Pregunta: ¿Cuál es la palabra clave?</p>
+    <p id="pregunta"></p>
 
-    <!-- Entrada de texto -->
     <input type="text" id="respuesta" placeholder="Escribe tu respuesta">
     <button onclick="verificar()">Enviar</button>
 
     <div id="resultado"></div>
 
     <script>
+        // Aquí se definen los valores que vienen desde la base (cuando tengas backend los pasas dinámicamente)
+        const videoYT = "https://www.youtube.com/watch?v=-fgso7M9azY"; 
+        const artista = "Rick Astley"; 
+        const nombre = "Never Gonna Give You Up";
+
+        // Construir embed
+        const videoID = videoYT.split("v=")[1];
+        document.getElementById("video").src = `https://www.youtube.com/embed/${videoID}`;
+
+        // Mostrar pregunta basada en Question
+        document.getElementById("pregunta").innerText = `¿Quién canta "${nombre}"?`;
+
         function verificar() {
-            const correcta = "rickroll"; // respuesta correcta
             const entrada = document.getElementById("respuesta").value.trim().toLowerCase();
+            const correcta = artista.toLowerCase();
             const resultado = document.getElementById("resultado");
 
             if (entrada === correcta) {
                 resultado.textContent = "✅ ¡Correcto!";
                 resultado.style.color = "green";
-                document.body.style.backgroundColor = "#c8f7c5"; // cambia fondo
-                // Aquí podrías agregar cualquier otra acción
             } else {
-                resultado.textContent = "❌ Respuesta incorrecta, intenta de nuevo.";
+                resultado.textContent = "❌ Incorrecto";
                 resultado.style.color = "red";
             }
         }
