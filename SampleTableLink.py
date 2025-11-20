@@ -5,18 +5,6 @@ import itertools
 # ================================
 # CONFIG
 # ================================
-API_KEYS = [
-    "AIzaSyC9FUdyNGUCIWc2ssmB-3FfqkdhXpBQn8Y",
-    "AIzaSyDroABlefeW4o5--expvuV0mIP6qZaGjH0",
-    "AIzaSyC0vDOUOH_kytpJ7e3Osj85xrXwDnYfN-E",
-    "AIzaSyB6PNa-lN6hE_lshje28hoNo_ctOh0BoMs",
-    "AIzaSyBBiPphoRFhuJ5PYrmDBcb1D0jomREWRI0",
-    "AIzaSyAFYThHKP9_k0NYkoZ4HMjHXYaFNapvobQ",
-    "AIzaSyDwwEO-u3u3Hzw7OGpbOcspkf_Qxh_eEe0",
-    "AIzaSyBV4RrO17Yt70yFPrALuZJ7UeHU0WK1Ijg",
-    "AIzaSyDad_usrSyoUSUTbIvo6cMWap5G57rEaDg"
-
-]
 
 N_PER_KEY = 90
 START_ID = 1
