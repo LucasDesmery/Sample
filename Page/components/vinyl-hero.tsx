@@ -571,15 +571,17 @@ export default function VinylHero({
         <div className="w-full max-w-4xl">
           <div className="space-y-8">
             {/* YouTube Video Player */}
-            <div className="w-full aspect-video rounded-lg overflow-hidden border-2 border-gray-800 shadow-2xl bg-black">
-              <iframe
-                className="w-full h-full"
-                src={`https://www.youtube.com/embed/${embedId}`}
-                title="YouTube video player"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
+            {embedId && (
+              <div className="w-full aspect-video rounded-lg overflow-hidden border-2 border-gray-800 shadow-2xl bg-black">
+                <iframe
+                  className="w-full h-full"
+                  src={`https://www.youtube.com/embed/${embedId}`}
+                  title="YouTube video player"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            )}
 
             {showInput ? (
               <div className="flex flex-col gap-4 max-w-2xl mx-auto w-full">
