@@ -45,7 +45,7 @@ export default function Page() {
   return (
     <main className="min-h-screen">
       <VinylHero
-        title={`${data.Answer.artist_name} - ${data.Answer.song_title}`}
+        title={`${data.Question.artista} - ${data.Question.nombre}`}
         showInput={true}
         linkText={`${data.Question.artista} - ${data.Question.nombre}`}
         linkUrl={data.Question.urlYT}
