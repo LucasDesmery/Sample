@@ -10,6 +10,7 @@ const nextConfig = {
     unoptimized: true,
   },
   output: 'export',
+  basePath: '/Sample',
 }
 
 export default nextConfig
