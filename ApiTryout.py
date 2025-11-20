@@ -1,37 +1,24 @@
 import sqlite3
+import re
 
 DB = r"C:\Proyectos propios\SampleMaster\TestSQLite\mibase.db"
-conn = sqlite3.connect(DB)
-cur = conn.cursor()
 
-# 1) Renombrar la tabla vieja
-cur.execute("ALTER TABLE Question RENAME TO Question_old;")
+def slugify(text):
+    # Convierte a slug: minusculas, espacios → guiones, borra caracteres raros
+    text = text.lower()
+    text = re.sub(r"[^a-z0-9\s-]", "", text)
+    text = re.sub(r"\s+", "-", text)
+    return text.strip("-")
 
-# 2) Crear de nuevo con urlYT que puede ser NULL
-cur.execute("""
-CREATE TABLE Question (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    answer_id INTEGER NOT NULL,
-    artista TEXT,
-    nombre TEXT,
-    sampling_url TEXT,
-    urlYT TEXT,  -- <- AHORA PERMITE NULL
-    UNIQUE(answer_id, artista, nombre),
-    FOREIGN KEY(answer_id) REFERENCES newAnswer(id) ON DELETE CASCADE
-);
-""")
+connection = sqlite3.connect(DB)
+cursor = connection.cursor()
 
-# 3) Copiar datos manteniendo urlYT si existía
-cur.execute("""
-INSERT INTO Question (id, answer_id, artista, nombre, sampling_url, urlYT)
-SELECT id, answer_id, artista, nombre, sampling_url, urlYT
-FROM Question_old;
-""")
+cursor.execute("SELECT nombre, artista FROM answer")
+rows = cursor.fetchall()
 
-# 4) Borrar tabla vieja
-cur.execute("DROP TABLE Question_old;")
-
-conn.commit()
-conn.close()
-
-print("✅ Tabla Question reconstruida correctamente.")
+print("availableSongs = [")
+for nombre, artista in rows:
+    value = slugify(f"{nombre} {artista}")
+    label = f"{nombre} - {artista}"
+    print(f'  {{ value: "{value}", label: "{label}" }},')
+print("]")

@@ -18,16 +18,25 @@
             border: none;
             margin-bottom: 20px;
         }
+        input {
+            padding: 8px;
+            font-size: 16px;
+        }
+        button {
+            padding: 8px 12px;
+            font-size: 16px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
 
     <h1>Mira el video y responde</h1>
 
-    <!-- Video dinámico desde Question.urlYT -->
+    <!-- El iframe ahora no usa watch?v= -->
     <iframe id="video" width="560" height="315" allowfullscreen></iframe>
 
-    <p id="pregunta"></p>
+    <p>Pregunta: ¿Cuál es la palabra clave?</p>
 
     <input type="text" id="respuesta" placeholder="Escribe tu respuesta">
     <button onclick="verificar()">Enviar</button>
@@ -35,28 +44,31 @@
     <div id="resultado"></div>
 
     <script>
-        // Aquí se definen los valores que vienen desde la base (cuando tengas backend los pasas dinámicamente)
-        const videoYT = "https://www.youtube.com/watch?v=-fgso7M9azY"; 
-        const artista = "Rick Astley"; 
-        const nombre = "Never Gonna Give You Up";
+        // Función que convierte de https://www.youtube.com/watch?v=XXXX → https://www.youtube.com/embed/XXXX
+        function getEmbedURL(url) {
+            let id = url.split("v=")[1];
+            if (!id) return url; // fallback si ya es embed
+            if (id.includes("&")) id = id.split("&")[0];
+            return "https://www.youtube.com/embed/" + id;
+        }
 
-        // Construir embed
-        const videoID = videoYT.split("v=")[1];
-        document.getElementById("video").src = `https://www.youtube.com/embed/${videoID}`;
+        // EJEMPLO – reemplazá esta URL con la que viene de tu base de datos
+        const urlYT = "https://www.youtube.com/watch?v=-fgso7M9azY";
 
-        // Mostrar pregunta basada en Question
-        document.getElementById("pregunta").innerText = `¿Quién canta "${nombre}"?`;
+        // Setea el video
+        document.getElementById("video").src = getEmbedURL(urlYT);
 
         function verificar() {
+            const correcta = "rickroll";
             const entrada = document.getElementById("respuesta").value.trim().toLowerCase();
-            const correcta = artista.toLowerCase();
             const resultado = document.getElementById("resultado");
 
             if (entrada === correcta) {
                 resultado.textContent = "✅ ¡Correcto!";
                 resultado.style.color = "green";
+                document.body.style.backgroundColor = "#c8f7c5";
             } else {
-                resultado.textContent = "❌ Incorrecto";
+                resultado.textContent = "❌ Respuesta incorrecta, intenta de nuevo.";
                 resultado.style.color = "red";
             }
         }
