@@ -74,7 +74,7 @@ const availableSongs = [
   { value: "de-msica-ligera-soda-stereo", label: "De Música Ligera - Soda Stereo" },
   { value: "perdonar-es-divino-gustavo-cerati", label: "Perdonar Es Divino - Gustavo Cerati" },
   { value: "back-to-life-willy-crook", label: "Back to Life - Willy Crook" },
-  { value: "la-bestia-pop-patricio-rey-y-sus-redonditos-de-ricota", label: "La Bestia Pop - Patricio Rey y sus Redonditos de Ricota" },  
+  { value: "la-bestia-pop-patricio-rey-y-sus-redonditos-de-ricota", label: "La Bestia Pop - Patricio Rey y sus Redonditos de Ricota" },
   { value: "masacre-en-el-puticlub-patricio-rey-y-sus-redonditos-de-ricota", label: "Masacre en El Puticlub - Patricio Rey y sus Redonditos de Ricota" },
   { value: "am-fri-frufi-fali-fru-patricio-rey-y-sus-redonditos-de-ricota", label: "Ñam Fri Frufi Fali Fru - Patricio Rey y sus Redonditos de Ricota" },
   { value: "luzbelito-y-las-sirenas-patricio-rey-y-sus-redonditos-de-ricota", label: "Luzbelito Y Las Sirenas - Patricio Rey y sus Redonditos de Ricota" },
@@ -93,7 +93,7 @@ const availableSongs = [
   { value: "una-vela-intoxicados", label: "Una Vela - Intoxicados" },
   { value: "nunca-quise-intoxicados", label: "Nunca Quise - Intoxicados" },
   { value: "tango-en-segunda-sui-generis", label: "Tango en Segunda - Sui Generis" },
-  { value: "las-increbles-aventuras-del-seor-tijeras-sui-generis", label: "Las Increíbles Aventuras Del Señor Tijeras - Sui Generis" },  
+  { value: "las-increbles-aventuras-del-seor-tijeras-sui-generis", label: "Las Increíbles Aventuras Del Señor Tijeras - Sui Generis" },
   { value: "pecados-para-dos-virus", label: "Pecados Para Dos - Virus" },
   { value: "una-luna-de-miel-en-la-mano-virus", label: "Una Luna De Miel en La Mano - Virus" },
   { value: "last-christmas-wham", label: "Last Christmas - Wham!" },
@@ -400,7 +400,7 @@ const availableSongs = [
   { value: "cornerstone-arctic-monkeys", label: "Cornerstone - Arctic Monkeys" },
   { value: "i-wanna-be-yours-arctic-monkeys", label: "I Wanna Be Yours - Arctic Monkeys" },
   { value: "r-u-mine-arctic-monkeys", label: "R U Mine? - Arctic Monkeys" },
-  { value: "gloria-in-excelsis-deo-gloria-version-patti-smith", label: "Gloria: In Excelsis Deo / Gloria (Version) - Patti Smith" },     
+  { value: "gloria-in-excelsis-deo-gloria-version-patti-smith", label: "Gloria: In Excelsis Deo / Gloria (Version) - Patti Smith" },
   { value: "elegie-patti-smith", label: "Elegie - Patti Smith" },
   { value: "free-money-patti-smith", label: "Free Money - Patti Smith" },
   { value: "stockholm-interview-patti-smith", label: "Stockholm Interview - Patti Smith" },
@@ -410,7 +410,7 @@ const availableSongs = [
   { value: "spellbound-siouxsie-and-the-banshees", label: "Spellbound - Siouxsie and the Banshees" },
   { value: "kiss-them-for-me-siouxsie-and-the-banshees", label: "Kiss Them for Me - Siouxsie and the Banshees" },
   { value: "cities-in-dust-siouxsie-and-the-banshees", label: "Cities in Dust - Siouxsie and the Banshees" },
-  { value: "metal-postcard-mittageisen-siouxsie-and-the-banshees", label: "Metal Postcard (Mittageisen) - Siouxsie and the Banshees" },  
+  { value: "metal-postcard-mittageisen-siouxsie-and-the-banshees", label: "Metal Postcard (Mittageisen) - Siouxsie and the Banshees" },
   { value: "skin-siouxsie-and-the-banshees", label: "Skin - Siouxsie and the Banshees" },
   { value: "red-light-siouxsie-and-the-banshees", label: "Red Light - Siouxsie and the Banshees" },
   { value: "rebel-girl-bikini-kill", label: "Rebel Girl - Bikini Kill" },
@@ -438,7 +438,7 @@ const availableSongs = [
   { value: "no-love-lost-joy-division", label: "No Love Lost - Joy Division" },
   { value: "warsaw-joy-division", label: "Warsaw - Joy Division" },
   { value: "sketch-artist-kim-gordon", label: "Sketch Artist - Kim Gordon" },
-  { value: "love-like-anthrax-entertainment-version-gang-of-four", label: "Love Like Anthrax (Entertainment! Version) - Gang Of Four" }, 
+  { value: "love-like-anthrax-entertainment-version-gang-of-four", label: "Love Like Anthrax (Entertainment! Version) - Gang Of Four" },
   { value: "ether-gang-of-four", label: "Ether - Gang Of Four" },
   { value: "what-we-all-want-gang-of-four", label: "What We All Want - Gang Of Four" },
   { value: "love-like-anthrax-gang-of-four", label: "Love Like Anthrax - Gang Of Four" },
@@ -449,7 +449,7 @@ const availableSongs = [
   { value: "at-the-moment-the-dead-milkmen", label: "At the Moment - The Dead Milkmen" },
   { value: "blue-monday-new-order", label: "Blue Monday - New Order" },
   { value: "bizarre-love-triangle-new-order", label: "Bizarre Love Triangle - New Order" },
-  { value: "confusion-pump-panel-reconstruction-mix-new-order", label: "Confusion (Pump Panel Reconstruction Mix) - New Order" },        
+  { value: "confusion-pump-panel-reconstruction-mix-new-order", label: "Confusion (Pump Panel Reconstruction Mix) - New Order" },
   { value: "true-faith-new-order", label: "True Faith - New Order" },
   { value: "confusion-new-order", label: "Confusion - New Order" },
   { value: "temptation-new-order", label: "Temptation - New Order" },
@@ -582,63 +582,79 @@ export default function VinylHero({
             </div>
 
             {showInput ? (
-              <form onSubmit={handleSubmit} className="flex gap-3 max-w-2xl mx-auto">
-                <Popover open={open} onOpenChange={setOpen}>
-                  <PopoverTrigger asChild>
-                    <Button
-                      variant="outline"
-                      role="combobox"
-                      aria-expanded={open}
-                      className="flex-1 h-12 justify-between bg-card border-border text-foreground"
-                    >
-                      {value ? availableSongs.find((song) => song.value === value)?.label : "Selecciona una canción..."}
-                      <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-[600px] p-0">
-                    <Command>
-                      <CommandInput placeholder="Buscar canción..." />
-                      <CommandList>
-                        <CommandEmpty>Esa canción no está en la base de datos</CommandEmpty>
-                        <CommandGroup>
-                          {availableSongs.map((song) => (
-                            <CommandItem
-                              key={song.value}
-                              value={song.value}
-                              onSelect={(currentValue: string) => {
-                                setValue(currentValue === value ? "" : currentValue)
-                                setOpen(false)
-                              }}
-                            >
-                              <Check
-                                className={cn("mr-2 h-4 w-4", value === song.value ? "opacity-100" : "opacity-0")}
-                              />
-                              {song.label}
-                            </CommandItem>
-                          ))}
-                        </CommandGroup>
-                      </CommandList>
-                    </Command>
-                  </PopoverContent>
-                </Popover>
-                <Button type="submit" size="icon" className="h-12 w-12 bg-gray-900 hover:bg-gray-800 text-white">
-                  <ArrowRight className="h-5 w-5" />
-                  <span className="sr-only">Enviar</span>
+              <div className="flex flex-col gap-4 max-w-2xl mx-auto w-full">
+                <form onSubmit={handleSubmit} className="flex gap-3 w-full">
+                  <Popover open={open} onOpenChange={setOpen}>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant="outline"
+                        role="combobox"
+                        aria-expanded={open}
+                        className="flex-1 h-12 justify-between bg-card border-border text-foreground"
+                      >
+                        {value ? availableSongs.find((song) => song.value === value)?.label : "Selecciona una canción..."}
+                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-[600px] p-0">
+                      <Command>
+                        <CommandInput placeholder="Buscar canción..." />
+                        <CommandList>
+                          <CommandEmpty>Esa canción no está en la base de datos</CommandEmpty>
+                          <CommandGroup>
+                            {availableSongs.map((song) => (
+                              <CommandItem
+                                key={song.value}
+                                value={song.value}
+                                onSelect={(currentValue: string) => {
+                                  setValue(currentValue === value ? "" : currentValue)
+                                  setOpen(false)
+                                }}
+                              >
+                                <Check
+                                  className={cn("mr-2 h-4 w-4", value === song.value ? "opacity-100" : "opacity-0")}
+                                />
+                                {song.label}
+                              </CommandItem>
+                            ))}
+                          </CommandGroup>
+                        </CommandList>
+                      </Command>
+                    </PopoverContent>
+                  </Popover>
+                  <Button type="submit" size="icon" className="h-12 w-12 bg-gray-900 hover:bg-gray-800 text-white shrink-0">
+                    <ArrowRight className="h-5 w-5" />
+                    <span className="sr-only">Enviar</span>
+                  </Button>
+                </form>
+
+                <Button
+                  variant="destructive"
+                  className="w-full"
+                  onClick={() => router.push("/derrota")}
+                >
+                  Rendirse
                 </Button>
-              </form>
+              </div>
             ) : (
               linkText &&
               linkUrl && (
                 <div className="text-center">
-                  <a
-                    href={linkUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-lg font-medium hover:underline text-foreground"
+                  <Button
+                    asChild
+                    size="lg"
+                    className="bg-green-600 hover:bg-green-700 text-white font-bold text-xl px-8 py-6"
                   >
-                    {linkText}
-                    <ArrowRight className="h-5 w-5" />
-                  </a>
+                    <a
+                      href={linkUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2"
+                    >
+                      {linkText}
+                      <ArrowRight className="h-6 w-6" />
+                    </a>
+                  </Button>
                 </div>
               )
             )}

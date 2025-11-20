@@ -46,10 +46,10 @@ export default function DerrotaPage() {
       <VinylHero
         title="DERROTA"
         titleColor="text-red-500"
-        videoId={data.Question.urlYT}
+        videoId={null}
         showInput={false}
-        linkText="Escuchar en YouTube"
-        linkUrl={data.Answer.urlYT}
+        linkText="VER RESPUESTA"
+        linkUrl={data.Question.sampling_url}
         data={data}
       />
     </main>

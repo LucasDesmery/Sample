@@ -21,10 +21,10 @@ export default function ExitoPage() {
       <VinylHero
         title="ÉXITO"
         titleColor="text-green-500"
-        videoId={data.Answer.urlYT}
+        videoId={null}
         showInput={false}
-        linkText="Escuchar en YouTube"
-        linkUrl={data.Answer.urlYT}
+        linkText="VER RESPUESTA"
+        linkUrl={data.Question.sampling_url}
         data={data}
       />
     </main>
