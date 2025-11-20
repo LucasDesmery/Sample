@@ -1007,6 +1007,15 @@ export default function VinylHero({
     }
   }
 
+  const getYoutubeId = (url: string | null | undefined) => {
+    if (!url) return ""
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/
+    const match = url.match(regExp)
+    return match && match[2].length === 11 ? match[2] : url
+  }
+
+  const embedId = getYoutubeId(videoId)
+
   return (
     <div className="relative min-h-screen overflow-hidden bg-background">
       <div className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-8 py-6">
@@ -1067,7 +1076,7 @@ export default function VinylHero({
             <div className="w-full aspect-video rounded-lg overflow-hidden border-2 border-gray-800 shadow-2xl bg-black">
               <iframe
                 className="w-full h-full"
-                src={`https://www.youtube.com/embed/${videoId}`}
+                src={`https://www.youtube.com/embed/${embedId}`}
                 title="YouTube video player"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
