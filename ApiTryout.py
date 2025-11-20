@@ -13,12 +13,12 @@ def slugify(text):
 connection = sqlite3.connect(DB)
 cursor = connection.cursor()
 
-cursor.execute("SELECT nombre, artista FROM answer")
+cursor.execute("SELECT song_title, artist_name FROM newAnswer")
 rows = cursor.fetchall()
 
 print("availableSongs = [")
-for nombre, artista in rows:
-    value = slugify(f"{nombre} {artista}")
-    label = f"{nombre} - {artista}"
+for song_title, artist_name in rows:
+    value = slugify(f"{song_title} {artist_name}")
+    label = f"{song_title} - {artist_name}"
     print(f'  {{ value: "{value}", label: "{label}" }},')
 print("]")
