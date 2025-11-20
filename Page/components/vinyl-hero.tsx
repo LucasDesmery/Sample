@@ -21,9 +21,9 @@ interface DailyRandomData {
   };
   Answer: {
     id: number;
-    nombre: string;
-    artista: string;
-    urlYT: string;
+    song_title: string;
+    artist_name: string;
+    urlYT?: string;
   };
 }
 
@@ -998,7 +998,7 @@ export default function VinylHero({
     if (!data) return
 
     const selectedSong = availableSongs.find((song) => song.value === value)
-    const expectedLabel = `${data.Answer.nombre} - ${data.Answer.artista}`
+    const expectedLabel = `${data.Answer.song_title} - ${data.Answer.artist_name}`
 
     if (selectedSong && selectedSong.label === expectedLabel) {
       router.push("/exito")

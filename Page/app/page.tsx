@@ -45,11 +45,11 @@ export default function Page() {
   return (
     <main className="min-h-screen">
       <VinylHero
-        title={`${data.Answer.artista} - ${data.Answer.nombre}`}
+        title={`${data.Answer.artist_name} - ${data.Answer.song_title}`}
         showInput={true}
         linkText={`${data.Question.artista} - ${data.Question.nombre}`}
         linkUrl={data.Question.urlYT}
-        videoId={data.Answer.urlYT}
+        videoId={data.Question.urlYT}
         data={data}
       />
     </main>

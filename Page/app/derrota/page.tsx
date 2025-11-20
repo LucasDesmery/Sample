@@ -46,7 +46,7 @@ export default function DerrotaPage() {
       <VinylHero
         title="DERROTA"
         titleColor="text-red-500"
-        videoId={data.Answer.urlYT}
+        videoId={data.Question.urlYT}
         showInput={false}
         linkText="Intentar de nuevo"
         linkUrl="/"
