@@ -26,7 +26,13 @@ export default function ExitoPage() {
         linkText="VER RESPUESTA"
         linkUrl={data.Question.sampling_url}
         data={data}
-        message="Seguis teniendo el don jose, sos una crack, te amo eternamente, feliz aniversario !!"
+        message={
+          <>
+            Seguis teniendo el don Jose, sos una crack, te amo eternamente
+            <br />
+            feliz aniversario !! &lt;3&lt;3&lt;3&lt;3&lt;3
+          </>
+        }
       />
     </main>
   );

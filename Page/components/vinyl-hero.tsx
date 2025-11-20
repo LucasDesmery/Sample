@@ -35,7 +35,7 @@ interface VinylHeroProps {
   linkUrl?: string;
   videoId?: string | null;
   data?: DailyRandomData;
-  message?: string;
+  message?: React.ReactNode;
 }
 
 const availableSongs = [
