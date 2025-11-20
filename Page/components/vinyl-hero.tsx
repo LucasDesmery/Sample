@@ -35,6 +35,7 @@ interface VinylHeroProps {
   linkUrl?: string;
   videoId?: string | null;
   data?: DailyRandomData;
+  message?: string;
 }
 
 const availableSongs = [
@@ -479,6 +480,7 @@ export default function VinylHero({
   linkText,
   linkUrl,
   data,
+  message,
 }: VinylHeroProps) {
   const [open, setOpen] = useState(false)
   const [value, setValue] = useState("")
@@ -580,6 +582,14 @@ export default function VinylHero({
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 />
+              </div>
+            )}
+
+            {message && (
+              <div className="text-center px-4">
+                <p className="text-xl md:text-2xl text-white font-medium leading-relaxed animate-pulse">
+                  {message}
+                </p>
               </div>
             )}
 
