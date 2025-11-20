@@ -992,6 +992,8 @@ export default function VinylHero({
   const [value, setValue] = useState("")
   const router = useRouter()
 
+  const [attempts, setAttempts] = useState<string[]>([])
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
 
@@ -1003,7 +1005,11 @@ export default function VinylHero({
     if (selectedSong && selectedSong.label === expectedLabel) {
       router.push("/exito")
     } else {
-      router.push("/derrota")
+      // Add to attempts if not already there
+      if (selectedSong && !attempts.includes(selectedSong.label)) {
+        setAttempts((prev) => [...prev, selectedSong.label])
+      }
+      setValue("") // Clear input
     }
   }
 
@@ -1143,6 +1149,20 @@ export default function VinylHero({
                   </a>
                 </div>
               )
+            )}
+
+            {/* Incorrect Attempts List */}
+            {attempts.length > 0 && showInput && (
+              <div className="mt-8 max-w-2xl mx-auto">
+                <h3 className="text-red-500 font-semibold mb-4 text-center">Intentos fallidos:</h3>
+                <ul className="space-y-2">
+                  {attempts.map((attempt, index) => (
+                    <li key={index} className="bg-red-500/10 border border-red-500/20 rounded-md p-3 text-red-200 flex items-center gap-2">
+                      <span className="text-red-500">✕</span> {attempt}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             )}
           </div>
         </div>

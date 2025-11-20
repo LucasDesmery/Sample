@@ -23,8 +23,8 @@ export default function ExitoPage() {
         titleColor="text-green-500"
         videoId={data.Answer.urlYT}
         showInput={false}
-        linkText="Ver más información"
-        linkUrl="https://example.com"
+        linkText="Escuchar en YouTube"
+        linkUrl={data.Answer.urlYT}
         data={data}
       />
     </main>

@@ -48,8 +48,8 @@ export default function DerrotaPage() {
         titleColor="text-red-500"
         videoId={data.Question.urlYT}
         showInput={false}
-        linkText="Intentar de nuevo"
-        linkUrl="/"
+        linkText="Escuchar en YouTube"
+        linkUrl={data.Answer.urlYT}
         data={data}
       />
     </main>
