@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import VinylHero from "@/components/vinyl-hero";
 import LoadingScreen from "@/components/loading-screen";
 import ErrorScreen from "@/components/error-screen";
+import CountdownTimer from "@/components/countdown-timer";
 import { getDailyRandom } from "@/service";
 
 type GameStatus = "playing" | "success" | "defeat";
@@ -33,12 +34,36 @@ export default function Page() {
     fetchData();
   }, []);
 
+  // Load game state from localStorage on mount
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const savedDate = localStorage.getItem("sample_game_date");
+    const savedStatus = localStorage.getItem("sample_game_status");
+    const today = new Date().toISOString().split("T")[0]; // YYYY-MM-DD
+
+    // If saved date matches today and we have a status, restore it
+    if (savedDate === today && savedStatus) {
+      setGameStatus(savedStatus as GameStatus);
+    } else if (savedDate !== today) {
+      // Clear old data if it's a new day
+      localStorage.removeItem("sample_game_date");
+      localStorage.removeItem("sample_game_status");
+    }
+  }, []);
+
   const handleSuccess = () => {
+    const today = new Date().toISOString().split("T")[0];
     setGameStatus("success");
+    localStorage.setItem("sample_game_date", today);
+    localStorage.setItem("sample_game_status", "success");
   };
 
   const handleDefeat = () => {
+    const today = new Date().toISOString().split("T")[0];
     setGameStatus("defeat");
+    localStorage.setItem("sample_game_date", today);
+    localStorage.setItem("sample_game_status", "defeat");
   };
 
   if (loading) {
@@ -91,6 +116,7 @@ export default function Page() {
             </>
           }
         />
+        <CountdownTimer />
       </main>
     );
   }
@@ -108,6 +134,7 @@ export default function Page() {
         data={data}
         message="Washed??? Joda seguis teniendo el don, proba mañana, te amo muchisimo, sos el amor de mi vida, feliz aniversario!!"
       />
+      <CountdownTimer />
     </main>
   );
 }
