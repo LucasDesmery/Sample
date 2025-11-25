@@ -17,6 +17,7 @@ export default function Page() {
   const [error, setError] = useState(false);
   const [gameStatus, setGameStatus] = useState<GameStatus>("playing");
   const [errorCount, setErrorCount] = useState(0);
+  const [attemptDetails, setAttemptDetails] = useState<Array<{ type: 'wrong' | 'artist-match' }>>([]);
   const [copied, setCopied] = useState(false);
 
   const fetchData = () => {
@@ -45,6 +46,7 @@ export default function Page() {
     const savedDate = localStorage.getItem("sample_game_date");
     const savedStatus = localStorage.getItem("sample_game_status");
     const savedErrorCount = localStorage.getItem("sample_error_count");
+    const savedAttemptDetails = localStorage.getItem("sample_attempt_details");
     const today = new Date().toISOString().split("T")[0]; // YYYY-MM-DD
 
     // If saved date matches today and we have a status, restore it
@@ -53,21 +55,27 @@ export default function Page() {
       if (savedErrorCount) {
         setErrorCount(parseInt(savedErrorCount, 10));
       }
+      if (savedAttemptDetails) {
+        setAttemptDetails(JSON.parse(savedAttemptDetails));
+      }
     } else if (savedDate !== today) {
       // Clear old data if it's a new day
       localStorage.removeItem("sample_game_date");
       localStorage.removeItem("sample_game_status");
       localStorage.removeItem("sample_error_count");
+      localStorage.removeItem("sample_attempt_details");
     }
   }, []);
 
-  const handleSuccess = (errors: number) => {
+  const handleSuccess = (errors: number, details: Array<{ type: 'wrong' | 'artist-match' }>) => {
     const today = new Date().toISOString().split("T")[0];
     setGameStatus("success");
     setErrorCount(errors);
+    setAttemptDetails(details);
     localStorage.setItem("sample_game_date", today);
     localStorage.setItem("sample_game_status", "success");
     localStorage.setItem("sample_error_count", errors.toString());
+    localStorage.setItem("sample_attempt_details", JSON.stringify(details));
   };
 
   const handleDefeat = () => {
@@ -78,11 +86,11 @@ export default function Page() {
   };
 
   const handleCopyResults = async () => {
-    const emojiScore = "🔴".repeat(errorCount) + "🟢";
+    const emojiScore = attemptDetails.map(a => a.type === 'artist-match' ? '🟠' : '🔴').join('') + '🟢';
     const message = `¡Acerté en Sample!
 ${emojiScore}
 
-Jugá en: https://sample-game.vercel.app`;
+Jugá en: https://lucasdesmery.github.io/Sample/`;
 
     try {
       await navigator.clipboard.writeText(message);
@@ -140,8 +148,8 @@ Jugá en: https://sample-game.vercel.app`;
               <CountdownTimer />
               <div className="mt-6 flex justify-center items-center gap-3">
                 <div className="flex items-center gap-2 text-4xl">
-                  {Array.from({ length: errorCount }).map((_, i) => (
-                    <span key={i}>🔴</span>
+                  {attemptDetails.map((attempt, i) => (
+                    <span key={i}>{attempt.type === 'artist-match' ? '🟠' : '🔴'}</span>
                   ))}
                   <span>🟢</span>
                 </div>

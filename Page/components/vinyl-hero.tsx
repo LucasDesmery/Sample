@@ -44,7 +44,7 @@ interface VinylHeroProps {
   videoId?: string | null;
   data?: DailyRandomData;
   message?: React.ReactNode;
-  onSuccess?: (errorCount: number) => void;
+  onSuccess?: (errorCount: number, attemptDetails: Array<{ type: 'wrong' | 'artist-match' }>) => void;
   onDefeat?: () => void;
 }
 
@@ -495,7 +495,7 @@ export default function VinylHero({
   const [open, setOpen] = useState(false)
   const [value, setValue] = useState("")
 
-  const [attempts, setAttempts] = useState<string[]>([])
+  const [attempts, setAttempts] = useState<Array<{ type: 'wrong' | 'artist-match'; label: string }>>([])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -506,11 +506,22 @@ export default function VinylHero({
     const expectedLabel = `${data.Answer.song_title} - ${data.Answer.artist_name}`
 
     if (selectedSong && selectedSong.label === expectedLabel) {
-      onSuccess?.(attempts.length)
+      onSuccess?.(attempts.length, attempts)
     } else {
-      // Add to attempts if not already there
-      if (selectedSong && !attempts.includes(selectedSong.label)) {
-        setAttempts((prev) => [...prev, selectedSong.label])
+      // Check if artist matches
+      if (selectedSong) {
+        const selectedArtist = selectedSong.label.split(' - ')[1];
+        const expectedArtist = data.Answer.artist_name;
+        const isArtistMatch = selectedArtist === expectedArtist;
+
+        // Add to attempts if not already there
+        const alreadyAttempted = attempts.some(a => a.label === selectedSong.label);
+        if (!alreadyAttempted) {
+          setAttempts((prev) => [...prev, {
+            type: isArtistMatch ? 'artist-match' : 'wrong',
+            label: selectedSong.label
+          }])
+        }
       }
       setValue("") // Clear input
     }
@@ -701,11 +712,19 @@ export default function VinylHero({
               <div className="mt-8 max-w-2xl mx-auto">
                 <h3 className="text-red-500 font-semibold mb-4 text-center">Intentos fallidos:</h3>
                 <ul className="space-y-2">
-                  {attempts.map((attempt, index) => (
-                    <li key={index} className="bg-red-500/10 border border-red-500/20 rounded-md p-3 text-red-200 flex items-center gap-2">
-                      <span className="text-red-500">✕</span> {attempt}
-                    </li>
-                  ))}
+                  {attempts.map((attempt, index) => {
+                    const isArtistMatch = attempt.type === 'artist-match';
+                    const bgColor = isArtistMatch ? 'bg-orange-500/10' : 'bg-red-500/10';
+                    const borderColor = isArtistMatch ? 'border-orange-500/20' : 'border-red-500/20';
+                    const textColor = isArtistMatch ? 'text-orange-200' : 'text-red-200';
+                    const iconColor = isArtistMatch ? 'text-orange-500' : 'text-red-500';
+
+                    return (
+                      <li key={index} className={`${bgColor} border ${borderColor} rounded-md p-3 ${textColor} flex items-center gap-2`}>
+                        <span className={iconColor}>✕</span> {attempt.label}
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             )}
