@@ -44,7 +44,7 @@ interface VinylHeroProps {
   videoId?: string | null;
   data?: DailyRandomData;
   message?: React.ReactNode;
-  onSuccess?: () => void;
+  onSuccess?: (errorCount: number) => void;
   onDefeat?: () => void;
 }
 
@@ -506,7 +506,7 @@ export default function VinylHero({
     const expectedLabel = `${data.Answer.song_title} - ${data.Answer.artist_name}`
 
     if (selectedSong && selectedSong.label === expectedLabel) {
-      onSuccess?.()
+      onSuccess?.(attempts.length)
     } else {
       // Add to attempts if not already there
       if (selectedSong && !attempts.includes(selectedSong.label)) {
