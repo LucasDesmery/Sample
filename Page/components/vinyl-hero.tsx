@@ -714,10 +714,10 @@ export default function VinylHero({
                 <ul className="space-y-2">
                   {attempts.map((attempt, index) => {
                     const isArtistMatch = attempt.type === 'artist-match';
-                    const bgColor = isArtistMatch ? 'bg-orange-500/10' : 'bg-red-500/10';
-                    const borderColor = isArtistMatch ? 'border-orange-500/20' : 'border-red-500/20';
-                    const textColor = isArtistMatch ? 'text-orange-200' : 'text-red-200';
-                    const iconColor = isArtistMatch ? 'text-orange-500' : 'text-red-500';
+                    const bgColor = isArtistMatch ? 'bg-yellow-500/10' : 'bg-red-500/10';
+                    const borderColor = isArtistMatch ? 'border-yellow-500/20' : 'border-red-500/20';
+                    const textColor = isArtistMatch ? 'text-yellow-200' : 'text-red-200';
+                    const iconColor = isArtistMatch ? 'text-yellow-500' : 'text-red-500';
 
                     return (
                       <li key={index} className={`${bgColor} border ${borderColor} rounded-md p-3 ${textColor} flex items-center gap-2`}>

@@ -86,7 +86,7 @@ export default function Page() {
   };
 
   const handleCopyResults = async () => {
-    const emojiScore = attemptDetails.map(a => a.type === 'artist-match' ? '🟠' : '🔴').join('') + '🟢';
+    const emojiScore = attemptDetails.map(a => a.type === 'artist-match' ? '🟡' : '🔴').join('') + '🟢';
     const message = `¡Acerté en Sample!
 ${emojiScore}
 
