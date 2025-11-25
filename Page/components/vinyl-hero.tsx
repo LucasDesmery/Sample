@@ -48,6 +48,25 @@ interface VinylHeroProps {
   onDefeat?: () => void;
 }
 
+const ARTIST_ALIASES: Record<string, string[]> = {
+  "Almendra": ["Luis Alberto Spinetta", "Spinetta"],
+  "Pescado Rabioso": ["Luis Alberto Spinetta", "Spinetta"],
+  "Invisible": ["Luis Alberto Spinetta", "Spinetta"],
+  "Spinetta Jade": ["Luis Alberto Spinetta", "Spinetta"],
+  "Luis Alberto Spinetta": ["Almendra", "Pescado Rabioso", "Invisible", "Spinetta Jade"],
+  "Serú Girán": ["Charly García", "David Lebón", "Pedro Aznar"],
+  "Sui Generis": ["Charly García", "Nito Mestre"],
+  "Charly García": ["Serú Girán", "Sui Generis", "La Máquina de Hacer Pájaros"],
+  "Patricio Rey y sus Redonditos de Ricota": ["Indio Solari", "Skay Beilinson"],
+  "Soda Stereo": ["Gustavo Cerati"],
+  "Gustavo Cerati": ["Soda Stereo"],
+  "Sumo": ["Luca Prodan"],
+  "Los Abuelos de la Nada": ["Andrés Calamaro", "Miguel Abuelo"],
+  "Andrés Calamaro": ["Los Abuelos de la Nada", "Los Rodríguez"],
+  "Manal": ["Javier Martínez"],
+  "Vox Dei": ["Ricardo Soulé"],
+};
+
 const availableSongs = [
   { value: "hyperborea-biosphere", label: "Hyperborea - Biosphere" },
   { value: "creep-radiohead", label: "Creep - Radiohead" },
@@ -512,7 +531,13 @@ export default function VinylHero({
       if (selectedSong) {
         const selectedArtist = selectedSong.label.split(' - ')[1];
         const expectedArtist = data.Answer.artist_name;
-        const isArtistMatch = selectedArtist === expectedArtist;
+
+        // Check exact match or alias match
+        const isExactMatch = selectedArtist === expectedArtist;
+        const isAliasMatch = ARTIST_ALIASES[expectedArtist]?.includes(selectedArtist) ||
+          ARTIST_ALIASES[selectedArtist]?.includes(expectedArtist);
+
+        const isArtistMatch = isExactMatch || isAliasMatch;
 
         // Add to attempts if not already there
         const alreadyAttempted = attempts.some(a => a.label === selectedSong.label);
