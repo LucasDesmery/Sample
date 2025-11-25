@@ -538,14 +538,13 @@ export default function VinylHero({
           <DialogContent className="bg-gray-900 text-white border-gray-800">
             <DialogHeader>
               <DialogTitle>¿Cómo jugar?</DialogTitle>
-              <DialogDescription className="text-gray-400">
-                Instrucciones del juego
-              </DialogDescription>
             </DialogHeader>
-            <div className="flex items-center justify-center py-4 text-center">
-              <p className="text-lg">
-                Sample es un juego para testear tu oido musical, escribi que cancion samplea la cancion que esta sonando ahora. Todos los dias un desafio nuevo
-              </p>
+            <div className="flex items-center justify-center py-8">
+              <div className="bg-gray-800 border border-gray-700 rounded-lg p-6 max-w-md">
+                <p className="text-center text-base leading-relaxed">
+                  Sample es un juego para testear tu oído musical, escribí qué canción samplea la canción que está sonando ahora. Todos los días un desafío nuevo.
+                </p>
+              </div>
             </div>
           </DialogContent>
         </Dialog>
