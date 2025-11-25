@@ -44,6 +44,8 @@ interface VinylHeroProps {
   videoId?: string | null;
   data?: DailyRandomData;
   message?: React.ReactNode;
+  onSuccess?: () => void;
+  onDefeat?: () => void;
 }
 
 const availableSongs = [
@@ -476,8 +478,6 @@ const availableSongs = [
   { value: "the-lovecats-the-cure", label: "The Lovecats - The Cure" },
 ]
 
-import { useRouter } from "next/navigation"
-
 // ... (imports remain the same)
 
 export default function VinylHero({
@@ -489,10 +489,11 @@ export default function VinylHero({
   linkUrl,
   data,
   message,
+  onSuccess,
+  onDefeat,
 }: VinylHeroProps) {
   const [open, setOpen] = useState(false)
   const [value, setValue] = useState("")
-  const router = useRouter()
 
   const [attempts, setAttempts] = useState<string[]>([])
 
@@ -505,7 +506,7 @@ export default function VinylHero({
     const expectedLabel = `${data.Answer.song_title} - ${data.Answer.artist_name}`
 
     if (selectedSong && selectedSong.label === expectedLabel) {
-      router.push("/exito")
+      onSuccess?.()
     } else {
       // Add to attempts if not already there
       if (selectedSong && !attempts.includes(selectedSong.label)) {
@@ -667,7 +668,7 @@ export default function VinylHero({
                 <Button
                   variant="destructive"
                   className="w-full"
-                  onClick={() => router.push("/derrota")}
+                  onClick={() => onDefeat?.()}
                 >
                   Rendirse
                 </Button>

@@ -6,10 +6,13 @@ import LoadingScreen from "@/components/loading-screen";
 import ErrorScreen from "@/components/error-screen";
 import { getDailyRandom } from "@/service";
 
+type GameStatus = "playing" | "success" | "defeat";
+
 export default function Page() {
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [gameStatus, setGameStatus] = useState<GameStatus>("playing");
 
   const fetchData = () => {
     setLoading(true);
@@ -30,6 +33,14 @@ export default function Page() {
     fetchData();
   }, []);
 
+  const handleSuccess = () => {
+    setGameStatus("success");
+  };
+
+  const handleDefeat = () => {
+    setGameStatus("defeat");
+  };
+
   if (loading) {
     return <LoadingScreen />;
   }
@@ -42,15 +53,60 @@ export default function Page() {
     return <ErrorScreen onRetry={fetchData} />;
   }
 
+  // Playing state - show game input
+  if (gameStatus === "playing") {
+    return (
+      <main className="min-h-screen">
+        <VinylHero
+          title={`${data.Question.artista} - ${data.Question.nombre}`}
+          showInput={true}
+          linkText={`${data.Question.artista} - ${data.Question.nombre}`}
+          linkUrl={data.Question.urlYT}
+          videoId={data.Question.urlYT}
+          data={data}
+          onSuccess={handleSuccess}
+          onDefeat={handleDefeat}
+        />
+      </main>
+    );
+  }
+
+  // Success state
+  if (gameStatus === "success") {
+    return (
+      <main className="min-h-screen">
+        <VinylHero
+          title="ÉXITO"
+          titleColor="text-green-500"
+          videoId={null}
+          showInput={false}
+          linkText="VER RESPUESTA"
+          linkUrl={data.Question.sampling_url}
+          data={data}
+          message={
+            <>
+              Seguis teniendo el don Jose, sos una crack, te amo eternamente
+              <br />
+              feliz aniversario !! &lt;3&lt;3&lt;3&lt;3&lt;3
+            </>
+          }
+        />
+      </main>
+    );
+  }
+
+  // Defeat state
   return (
     <main className="min-h-screen">
       <VinylHero
-        title={`${data.Question.artista} - ${data.Question.nombre}`}
-        showInput={true}
-        linkText={`${data.Question.artista} - ${data.Question.nombre}`}
-        linkUrl={data.Question.urlYT}
-        videoId={data.Question.urlYT}
+        title="DERROTA"
+        titleColor="text-red-500"
+        videoId={null}
+        showInput={false}
+        linkText="VER RESPUESTA"
+        linkUrl={data.Question.sampling_url}
         data={data}
+        message="Washed??? Joda seguis teniendo el don, proba mañana, te amo muchisimo, sos el amor de mi vida, feliz aniversario!!"
       />
     </main>
   );
