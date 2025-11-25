@@ -110,13 +110,15 @@ export default function Page() {
           data={data}
           message={
             <>
-              Seguis teniendo el don Jose, sos una crack, te amo eternamente
-              <br />
-              feliz aniversario !! &lt;3&lt;3&lt;3&lt;3&lt;3
+              <CountdownTimer />
+              <div className="mt-6">
+                Seguis teniendo el don Jose, sos una crack, te amo eternamente
+                <br />
+                feliz aniversario !! &lt;3&lt;3&lt;3&lt;3&lt;3
+              </div>
             </>
           }
         />
-        <CountdownTimer />
       </main>
     );
   }
@@ -132,9 +134,15 @@ export default function Page() {
         linkText="VER RESPUESTA"
         linkUrl={data.Question.sampling_url}
         data={data}
-        message="Washed??? Joda seguis teniendo el don, proba mañana, te amo muchisimo, sos el amor de mi vida, feliz aniversario!!"
+        message={
+          <>
+            <CountdownTimer />
+            <div className="mt-6">
+              Washed??? Joda seguis teniendo el don, proba mañana, te amo muchisimo, sos el amor de mi vida, feliz aniversario!!
+            </div>
+          </>
+        }
       />
-      <CountdownTimer />
     </main>
   );
 }
