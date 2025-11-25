@@ -38,8 +38,8 @@ export default function Page() {
     return <ErrorScreen onRetry={fetchData} />;
   }
 
-  if (!data) {
-    return null; // Should not happen if loading and error are handled
+  if (!data || !data.Question) {
+    return <ErrorScreen onRetry={fetchData} />;
   }
 
   return (
