@@ -8,6 +8,14 @@ import { ArrowRight, HelpCircle, ChevronsUpDown, Check } from "lucide-react"
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { cn } from "@/lib/utils"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 
 interface DailyRandomData {
   date: string;
@@ -520,10 +528,27 @@ export default function VinylHero({
     <div className="relative min-h-screen overflow-hidden bg-background">
       <div className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-8 py-6">
         <h1 className={`text-4xl font-bold tracking-wider ${titleColor}`}>{title}</h1>
-        <Button variant="ghost" size="icon" className="h-10 w-10 text-white hover:bg-white/10 border border-white/20">
-          <HelpCircle className="h-5 w-5" />
-          <span className="sr-only">Ayuda</span>
-        </Button>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button variant="ghost" size="icon" className="h-10 w-10 text-white hover:bg-white/10 border border-white/20">
+              <HelpCircle className="h-5 w-5" />
+              <span className="sr-only">Ayuda</span>
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="bg-gray-900 text-white border-gray-800">
+            <DialogHeader>
+              <DialogTitle>¿Cómo jugar?</DialogTitle>
+              <DialogDescription className="text-gray-400">
+                Instrucciones del juego
+              </DialogDescription>
+            </DialogHeader>
+            <div className="flex items-center justify-center py-4 text-center">
+              <p className="text-lg">
+                Sample es un juego para testear tu oido musical, escribi que cancion samplea la cancion que esta sonando ahora. Todos los dias un desafio nuevo
+              </p>
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
 
       {/* Left Half Vinyl */}
